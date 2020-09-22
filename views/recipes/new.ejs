@@ -1,0 +1,41 @@
+<%- include ("../partials/header") %>
+<div class="row justify-content-center">
+    <div class="col-md-12 text-center">
+        <h1>Create a New Food Recipe</h1>
+    </div>
+
+    <div class="col-10 col-md-8 col-lg-6">
+        <form action="/recipes" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" type="text" name="recipe[name]" placeholder="Pasta, Steak, Ramen, etc...">
+            </div>
+            <div class="form-group">
+                <label>Difficulty</label>
+                <select class="form-control" name="recipe[difficulty]">
+                    <option class="form-control" value="">Choose Difficulty Level</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                    <option value="Chef Only">Chef Only</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label>Image Upload</label>
+                <input class="form-control" type="file" name="image" placeholder="image" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label>Description (html support)</label>
+                <textarea class="form-control" name="recipe[description]" id="" cols="40" rows="10">
+                </textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block">Submit</button>
+            </div>
+        </form>
+        <a href="/recipes">Go Back</a>
+    </div>
+</div>
+
+<%- include ("../partials/footer") %>

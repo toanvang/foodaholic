@@ -1,0 +1,120 @@
+<%- include ("../partials/header") %>
+<div class="container">
+    <div class="card mb-3">
+        <img src="<%= recipe.image %>" class="card-img-top" alt="<%= recipe.name %>">
+        <div class="card-body">
+            <p class="float-right"><%=recipe.difficulty%></p>
+            <h3 class=" float-left card-title"><%= recipe.name %></h3>
+            <div class="clearfix"></div>
+            <p><em>Submitted By <%= recipe.author.username.charAt(0).toUpperCase() + recipe.author.username.slice(1) %>,
+                    <%= moment(recipe.createdAt).fromNow() %></em></p>
+            <hr>
+            <p class="card-text"><%- recipe.description %></p>
+            <% if (currentUser && recipe.author.id.equals(currentUser._id)) { %>
+            <a class="btn btn-warning" href="/recipes/<%= recipe._id %>/edit">Edit</a>
+            <form class="d-inline" action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">
+                    Delete
+                </button>
+                <%} %>
+
+            </form>
+        </div>
+    </div>
+    <div class="text-right mb-3">
+        <a class="btn btn-primary <% if (currentUser && recipe.reviews.some(function (review) {return review.author.id.equals(currentUser._id)})) { %> disabled <% } %>"
+            href="/recipes/<%= recipe._id %>/reviews/new">
+            Add New Review</a>
+        <a class="btn btn-success" href="/recipes/<%= recipe._id %>/comments/new">Add New Comment</a>
+    </div>
+    <!--Review section-->
+    <div class="thumbnail">
+        <div class="caption-full">
+            <% if (recipe.rating === 0) { %>
+            <h5>
+                <em>No reviews yet.</em>
+            </h5>
+            <% } else { %>
+            <p>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star <% if (recipe.rating > 1.5) { %> checked <% } %>"></span>
+                <span class="fa fa-star <% if (recipe.rating > 2.5) { %> checked <% } %>"></span>
+                <span class="fa fa-star <% if (recipe.rating > 3.5) { %> checked <% } %>"></span>
+                <span class="fa fa-star <% if (recipe.rating > 4.5) { %> checked <% } %>"></span>
+                <em>(Total Reviews: <%= recipe.reviews.length %>)</em>
+            </p>
+            <div class="d-flex justify-content-between">
+                <h4>Latest Reviews:</h4>
+                <h4><a href="/recipes/<%= recipe._id %>/reviews">See all reviews</a></h4>
+            </div>
+            <hr class="mt-0">
+            <% recipe.reviews.slice(0, 5).forEach(function(review){ %>
+            <div class="row">
+                <div class="col-md-3">
+                    <%- '<span class="fa fa-star checked"></span>'.repeat(review.rating) %><%- '<span class="fa fa-star"></span>'.repeat(5 - review.rating) %>
+                    <div>Review by: <strong><%= review.author.username %></strong></div>
+                    <span><em><%= review.updatedAt.toDateString() %></em></span>
+                </div>
+                <div class="col-md-9">
+                    <p style="text-align: justify; word-wrap: break-word;">
+                        <%= review.text %>
+                    </p>
+                    <% if(currentUser && review.author.id.equals(currentUser._id)){ %>
+                    <a class="btn btn-xs btn-warning"
+                        href="/recipes/<%=recipe._id %>/reviews/<%=review._id %>/edit">Edit</a>
+                    <form class="d-inline" action="/recipes/<%=recipe._id %>/reviews/<%=review._id %>?_method=DELETE"
+                        method="POST">
+                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                    </form>
+                    <% } %>
+                </div>
+            </div>
+            <hr>
+            <% }); %>
+            <div style="margin-bottom: 10px;">
+                <h4>Comments:</h4>
+                <% } %>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <% recipe.comments.forEach(function(comment){ %>
+
+        <div class="col-md-12 mb-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="float-left">
+                        <p class="card-title"><strong><%= comment.author.username %></strong></p>
+                        <p class="card-text">
+                            <%= comment.text %>
+                        </p>
+                    </div>
+                    <div class="float-right">
+                        <p><%= moment(comment.createdAt).fromNow() %></p>
+
+                        <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+                        <div class="float-right">
+                            <a class="btn btn-xs btn-warning"
+                                href="/recipes/<%= recipe._id%>/comments/<%= comment._id %>/edit">Edit</a>
+
+                            <form class="d-inline"
+                                action="/recipes/<%= recipe._id%>/comments/<%= comment._id %>?_method=DELETE"
+                                method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%})%>
+    </div>
+</div>
+
+
+
+
+<%- include ("../partials/footer") %>

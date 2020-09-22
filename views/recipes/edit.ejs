@@ -1,0 +1,42 @@
+<%- include ("../partials/header") %>
+
+<div class="row justify-content-center">
+    <div class="col-md-12 text-center">
+        <h1 class="text-center">Edit <%= recipe.name %></h1>
+    </div>
+
+    <div class="col-10 col-sm-5">
+        <form action="/recipes/<%= recipe._id %>/?_method=PUT" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Username</label>
+                <input class="form-control" type="text" name="name" value="<%= recipe.name %>">
+            </div>
+            <div class="form-group">
+                <label>Difficulty</label>
+                <select class="form-control" name="difficulty" value="<%= recipe.difficulty %>">
+                    <option value="">Choose Difficulty</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                    <option value="Chef Only">Chef Only</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Image</label>
+                <input class="form-control" type="file" name="image" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label>Description (html support)</label>
+                <textarea class="form-control" name="description" id="" cols="40" rows="10"><%= recipe.description %></textarea>
+                <!-- <input class="form-control" type="text" name="description" value="<%= recipe.description %>"> -->
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block">Update</button>
+            </div>
+        </form>
+        <a href="/recipes">Go Back</a>
+    </div>
+</div>
+</div>
+
+<%- include ("../partials/footer") %>

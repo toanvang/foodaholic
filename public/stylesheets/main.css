@@ -1,0 +1,86 @@
+body {
+	padding-top: 65px;
+	padding-bottom: 40px;
+
+}
+
+.navbar {
+	background: rgb(189,33,48);
+	line-height: 1.0;
+}
+
+.navbar-dark .navbar-nav .nav-lzink {
+    color: white;
+}
+
+.home-login {
+	background:rgb(189,33,48);
+}
+
+header{
+	height: 400px;
+	background-size: cover;
+	background-position: center;
+	background-image: url("https://i.pinimg.com/originals/77/43/45/7743452e99a1bcf378df63a0b3984b42.jpg");
+}
+
+.my-auto{
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+#welcome {
+	font-family: 'Kalam', cursive;
+	font-size: 70px;
+}
+
+#search {
+	text-align: center
+}
+
+/* create padding for the body after header */
+#bodywithnonav{
+	padding-left: 50px;
+	padding-right: 50px;	
+}
+
+.navbar-brand {
+	font-family: 'Lobster', cursive;
+	font-size: 40px;
+}
+.thumbnail img {
+	width: 100%;
+}
+
+.thumbnail {
+	padding: 0;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+	color: white;
+}	
+
+/* color for reviews */
+.checked {
+    color: orange;
+}
+
+/* change column display for mansory effect */
+@media (min-width: 576px) and (max-width: 768px)
+  {
+	  .card-columns {
+		  -webkit-column-count: 2;
+		  -moz-column-count: 2;
+		  column-count: 2;
+	  }
+  }
+
+@media (min-width: 992px)
+{
+    .card-columns {
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4;
+    }
+}
+

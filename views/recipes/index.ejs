@@ -1,0 +1,61 @@
+<%- include ("../partials/header") %>
+<header class="mb-3 d-flex flex-column align-items-center justify-content-center">
+	<h1 class="d-none d-sm-block" id="welcome">Share Your Cuisine </h1>
+	<h4 class="mb-3">Food Recipe for Foodies</h4>
+	<a class="btn btn-danger btn-large" href="/recipes/new">Add New Food Recipe</a>
+	<p>
+	<form action="/recipes" method="GET" class="form-inline justify-content-center">
+		<div class="form-group">
+			<input type="text" name="search" placeholder="Lookup Recipe" class="border border-danger">
+			<input type="submit" value="Search" class="btn btn-sm btn-danger ml-1">
+		</div>
+	</form>
+	</p>
+</header>
+
+
+<div class="row ml-1 mt-1">
+	<% if(error && error.length >0) { %>
+	<div class="alert alert-danger" role="alert">
+		<%= error %>
+	</div>
+	<% } %>
+	<% if(success && success.length >0) { %>
+	<div class="alert alert-success" role="alert">
+		<%= success %>
+	</div>
+	<% } %>
+
+</div>
+
+
+<div id="bodywithnonav">
+	<!-- Mansory effect must be put in div -->
+	<div>
+		<div class="card-columns">
+			<% recipes.forEach(function(recipe){ %>
+			<div class="card bg-light border-danger mb-3">
+				<img src="<%= recipe.image %>" class="card-img-top" alt="<%= recipe.name %>">
+				<div class="card-body d-flex flex-column">
+					<h5 class="card-title"><%= recipe.name %></h5>
+					<a href="/recipes/<%= recipe._id %>" class="btn btn-danger btn-md">More Info</a>
+				</div>
+				<div class="card-footer">
+					<small class="text-muted"><% if (recipe.rating === 0) { %>
+						<em>No reviews yet.</em>
+						<% } else { %>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star <% if (recipe.rating > 1.5) { %> checked <% } %>"></span>
+						<span class="fa fa-star <% if (recipe.rating > 2.5) { %> checked <% } %>"></span>
+						<span class="fa fa-star <% if (recipe.rating > 3.5) { %> checked <% } %>"></span>
+						<span class="fa fa-star <% if (recipe.rating > 4.5) { %> checked <% } %>"></span>
+						<% } %></small>
+				</div>
+			</div>
+			<% }); %>
+		</div>
+	</div>
+
+
+
+	<%- include ("../partials/footer") %>
