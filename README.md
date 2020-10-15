@@ -1,7 +1,7 @@
 # Table of contents
 * [FoodAholic](#FoodAholic)
 * [Technologies and Implementations](#Technologies-and-Implementations)
-* [Usuage](#Usuage)
+* [Usage](#Usage)
 * [Features](#Features)
 
 ## FoodAholic
