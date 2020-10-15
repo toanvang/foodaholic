@@ -5,12 +5,12 @@
 * [Features](#Features)
 
 ## FoodAholic
-FoodAholic is a food sharing recipe web application. This site is built because of my love for food and to sharpen my web development skills through JavaScript, MEN stack, RESTful routing, and Bootstrap. 
+FoodAholic is a food sharing recipe web application. This site was built because of my love for food and to sharpen my web development skills through JavaScript, MEN stack, RESTful routing, and Bootstrap.
 
 View this project live [HERE](http://foodaholic.herokuapp.com/)
 ## Usage
-* Recipes can be found by using the search bar in the homepage
-* The user needs to create an account or sign in to interact with recipe, review and comment
+* Recipe can be found by using the search bar on the homepage
+* User needs to create an account or sign in to interact with recipe, review, and comment
 
 ## Technologies and Implementations
 The project is created with:
